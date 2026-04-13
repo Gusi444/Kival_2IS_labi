@@ -1,0 +1,112 @@
+public class Queue {
+    private int[] items;   // массив для хранения элементов
+    private int bottom;     // индекс первого элемента
+    private int top;      // индекс последнего элемента
+    private int size;      // текущее количество элементов
+    private int capacity;  // максимальная вместимость
+
+    // Конструктор — инициализация очереди
+    public Queue(int capacity) {
+        this.capacity = capacity;
+        items = new int[capacity];
+        bottom = 0;
+        top = -1;
+        size = 0;
+    }
+    // Проверить, пуста ли очередь
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    // Добавить элемент в конец очереди
+    public void enqueue_top(int item) {
+        if (size == capacity) {
+            System.out.println("Очередь переполнена!");
+            return;
+        }
+        top = (top + 1) % capacity;
+        items[top] = item;
+        size++;
+    }
+    // Добавить элемент в начало очереди
+    public void enqueue_bottom(int item) {
+        if (size == capacity) {
+            System.out.println("Очередь переполнена!");
+            return;
+        }
+        bottom = (bottom - 1 + capacity) % capacity; 
+        items[bottom] = item;
+        size++;
+    }
+    //Удалить элемент из начала очереди
+    public int dequeue_bottom() {
+        if (isEmpty()) {
+            throw new RuntimeException("Очередь пуста");
+        }
+        int item = items[bottom];
+        bottom = (bottom + 1) % capacity; 
+        size--;
+        return item;
+    }
+    //Удалить элемент из конца очереди
+    public int dequeue_top() {
+        if (isEmpty()) {
+            throw new RuntimeException("Очередь пуста");
+        }
+        int item = items[top];
+        top = (top - 1 + capacity) % capacity;
+        size--;
+        return item;
+    }
+    //Посмотреть первый элемент в очереди
+    public int peek_bottom() {
+        if (isEmpty()) {
+            throw new RuntimeException("Очередь пуста");
+        }
+        return items[bottom];
+    }
+    //Посмотреть последний элемент в очереди
+    public int peek_top() {
+        if (isEmpty()) {
+            throw new RuntimeException("Очередь пуста");
+        }
+        return items[top];
+    }
+    //Посмотреть количество элементов в очереди
+    public int count() {
+        if (isEmpty()) {
+            throw new RuntimeException("Очередь пуста");
+        }
+        return size;
+    }
+    // Печать очереди 
+    public void display() {
+        for (int i = 0; i < size; i++) {
+            int index = (bottom + i) % capacity;
+            System.out.println(items[index]);
+        }
+    }
+    //Демонстрация работы
+    public static void main(String[] args) {
+        Queue queue = new Queue(5); // очередь вместимостью 5
+        queue.enqueue_top(1);
+        queue.enqueue_top(2);
+        queue.enqueue_top(3);
+        queue.enqueue_top(4);
+        queue.enqueue_bottom(6);
+        System.out.println("Очередь:");
+        queue.display();    
+        System.out.println("Количество элементов в очереди: " + queue.count());
+        System.out.println("Первый элемент в очереди: " + queue.peek_bottom());
+        System.out.println("Последний в очереди: " + queue.peek_top());
+        System.out.println("----------------------");
+        System.out.println("Удален элемент: " + queue.dequeue_bottom());
+        System.out.println("Удален элемент: " + queue.dequeue_bottom());
+        System.out.println("Удален элемент: " + queue.dequeue_top());
+        System.out.println("----------------------");
+        System.out.println("Очередь:");
+        queue.display();
+        System.out.println("Количество элементов в очереди: " + queue.count());
+        System.out.println("Первый элемент в очереди: " + queue.peek_bottom());
+        System.out.println("Последний в очереди: " + queue.peek_top());
+    }
+}
