@@ -1,0 +1,72 @@
+public class Stack {
+    private int top; //Индекс верхнего числа в стеке
+    private int[] items; //Стек
+    // Конструктор для инициализации стека
+    public Stack(int CC) {
+        items = new int[CC];
+        top = -1;
+    }
+    // Проверка на пустоту
+    public boolean isEmpty() {
+        return top == -1;
+    }
+    // Добавление элемента
+    public void push(int item) {
+        if (top == items.length - 1) {
+            System.out.println("Стек переполнен!");
+            return;
+        }
+        top++;
+        items[top] = item;
+    }
+    // Извлечение элемента (возвращает null, если стек пуст)
+    public Integer pop() {
+        if (isEmpty()) {
+            return null;
+        }
+        int item = items[top];
+        top--;
+        return item;
+    }
+    // Просмотр верхнего элемента
+    public Integer peek() {
+        if(isEmpty()){
+            return null;
+        }
+        return items[top];
+    }
+    // Печать стека сверху вниз
+    public void display() {
+        for (int i = top; i >= 0; i--) {
+            System.out.println(items[i]);
+        }
+    }
+    // Количество элементов в стеке(count)
+    public Integer count() {
+        if(isEmpty()){
+            return null;
+        }
+        return top+1;
+    }
+    //Main функция
+public static void main(String[] args) {
+        Stack stack = new Stack(10);  // создаём стек вместимостью 10
+        
+        //реализация метода push()
+        stack.push(143); 
+        stack.push(42);
+        stack.push(228);
+
+        System.out.println("Стек:");
+        stack.display();    //Вывод стека
+        System.out.println("Последний элемент: " + stack.peek());   //реализация метода peek()
+        System.out.println("Количество элементов: " + stack.count());   //реализация метода count()
+        System.out.println("------------------------------------");
+        System.out.println("Удаленный элемент: " + stack.pop());    //реализация метода pop()
+        System.out.println("Стек:");
+        stack.display();
+        System.out.println("Последний элемент: " + stack.peek());
+        System.out.println("Количество элементов: " + stack.count());
+    }
+}
+
