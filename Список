@@ -1,0 +1,51 @@
+// Узел односвязного списка 
+class Node<T> {
+    T data;
+    Node<T> next;
+
+    Node(T data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+// Односвязный список
+class LinkedList<T> {
+    private Node<T> head;
+
+    public LinkedList() {
+        head = null;
+    }
+    // Добавление узла в конец списка
+    public void add(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node<T> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+    }
+    // Печать всех элементов списка
+    public void printList() {
+        Node<T> current = head;
+        while (current != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+    }
+}
+// Демонстрация работы списка.
+public class Список {
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        list.printList();
+    }
+}
