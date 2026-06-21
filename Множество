@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MySet<T extends Comparable<T>> implements Iterable<T> {
+public class Множество<T extends Comparable<T>> implements Iterable<T> {
     private List<T> items;
 
-    public MySet() {
+    public Множество() {
         items = new ArrayList<>();
     }
 
-    public MySet(Iterable<T> initialItems) {
+    public Множество(Iterable<T> initialItems) {
         this();
         addRange(initialItems);
     }
@@ -39,8 +39,8 @@ public class MySet<T extends Comparable<T>> implements Iterable<T> {
         return items.size();
     }
 
-    public MySet<T> union(MySet<T> other) {
-        MySet<T> result = new MySet<>(this);
+    public Множество<T> union(Множество<T> other) {
+        Множество<T> result = new Множество<>(this);
         for (T item : other.items) {
             if (!result.contains(item)) {
                 result.add(item);
@@ -49,8 +49,8 @@ public class MySet<T extends Comparable<T>> implements Iterable<T> {
         return result;
     }
 
-    public MySet<T> intersection(MySet<T> other) {
-        MySet<T> result = new MySet<>();
+    public Множество<T> intersection(Множество<T> other) {
+        Множество<T> result = new Множество<>();
         for (T item : this.items) {
             if (other.contains(item)) {
                 result.add(item);
@@ -59,17 +59,17 @@ public class MySet<T extends Comparable<T>> implements Iterable<T> {
         return result;
     }
 
-    public MySet<T> difference(MySet<T> other) {
-        MySet<T> result = new MySet<>(this);
+    public Множество<T> difference(Множество<T> other) {
+        Множество<T> result = new Множество<>(this);
         for (T item : other.items) {
             result.remove(item);
         }
         return result;
     }
 
-    public MySet<T> symmetricDifference(MySet<T> other) {
-        MySet<T> union = this.union(other);
-        MySet<T> intersection = this.intersection(other);
+    public Множество<T> symmetricDifference(Множество<T> other) {
+        Множество<T> union = this.union(other);
+        Множество<T> intersection = this.intersection(other);
         return union.difference(intersection);
     }
 
@@ -86,7 +86,7 @@ public class MySet<T extends Comparable<T>> implements Iterable<T> {
     public static void main(String[] args) {
         System.out.println("=== Демонстрация работы множества ===\n");
 
-        MySet<Integer> setA = new MySet<>();
+        Множество<Integer> setA = new Множество<>();
         setA.add(1);
         setA.add(2);
         setA.add(3);
@@ -94,7 +94,7 @@ public class MySet<T extends Comparable<T>> implements Iterable<T> {
         System.out.println("Множество A: " + setA);
         System.out.println("Количество элементов в A: " + setA.count());
 
-        MySet<Integer> setB = new MySet<>();
+        Множество<Integer> setB = new Множество<>();
         setB.add(3);
         setB.add(4);
         setB.add(5);
