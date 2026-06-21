@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class SortComparison {
+public class СортировкаМассива {
 
   public static <T extends Comparable<T>> void quickSort(T[] arr) {
     quickSort(arr, 0, arr.length - 1);
